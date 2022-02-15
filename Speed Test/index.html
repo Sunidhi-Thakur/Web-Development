@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Test</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    
+</head>
+
+<body>
+    <div class="main">
+        <div class="center">
+            <h1 id="heading">Test Your Typing Speed</h1>
+            <h2 id="msg"></h2>
+            <textarea name="textarea" id="textarea" cols="100" rows="10" placeholder="Start Typing....."></textarea>
+            <button id="btn">Start</button>
+        </div>
+    </div>
+
+    <script>
+        const sentences = ["Sometimes it is better to just walk away from things and go back to them later when you are in a better frame of mind.", "The quick brown fox jumps over the lazy dog.", "Harrold felt confident that nobody would ever suspect his spy pigeon.", "Tomatoes make great weapons when water balloons aren’t available.", "It is not difficult to do a handstand if you just stand on your hands.", "He was sure the Devil created red sparkly glitter."
+];
+
+const msg = document.getElementById("msg");
+const typedWords = document.getElementById("textarea");
+const btn = document.getElementById("btn");
+let startTime, endTime;
+
+const playGame = () => {
+    let randomNumber = Math.floor(Math.random()*sentences.length);
+    msg.innerText = sentences[randomNumber];
+    let date = new Date();
+    startTime = date.getTime();
+    btn.innerText = "Done";
+}
+
+const endGame = () => {
+    let date = new Date();
+    endTime = date.getTime();
+    let totalTime = (endTime-startTime)/1000;
+
+    let totalStr = typedWords.value;
+    let wordCount = wordCounter(totalStr);
+
+    let speed = Math.round((wordCount / totalTime) * 60);
+
+    let accuracy = Math.round(compareWords(msg.innerText, totalStr));
+
+
+    let finalMsg = "You typed total "+wordCount+" words at a speed of "+speed+" words per minutes. Your accuracy is "+accuracy+"%";
+
+    msg.innerText = finalMsg;
+}
+
+const wordCounter = (str) => {
+    let response = str.split(" ").length;
+    return response;
+}
+
+const compareWords = (s1, s2) => {
+    let w1 = s1.split(" ");
+    let w2 = s2.split(" ");
+    let cnt = 0;
+
+    w1.forEach(function (item, index) {
+        if(item == w2[index]){
+            cnt++;
+        }
+    })
+
+    return (cnt/s1.split(" ").length)*100;
+}
+
+btn.addEventListener("click", function(){
+    if(this.innerText == 'Start'){
+        typedWords.disabled = false;
+        playGame();
+    }else if(this.innerText == 'Done'){
+        typedWords.disabled = true;
+        btn.innerText = 'Start';
+        endGame();
+    }
+})
+
+
+    </script>
+</body>
+
+</html>

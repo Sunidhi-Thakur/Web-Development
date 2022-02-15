@@ -1,0 +1,43 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background: rgb(148, 190, 226);
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 150px 0px;
+}
+
+#heading{
+    margin: 20px;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+#msg{
+    margin: 20px;
+}
+
+#textarea{
+    margin: 20px;
+    box-shadow: 0 0 12px rgb(1, 23, 97);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    padding: 25px;
+    font-size: 1.2rem;
+}
+
+#btn{
+    margin: 10px;
+    padding: 10px 50px;
+    border: 2px solid rgd(1, 23, 97);
+    border-radius: 15px;
+    background-color: rgb(117, 149, 255);
+    font-family: 'Luckiest Guy', cursive;
+}
